@@ -20,3 +20,5 @@ script:
   - coverage xml
   - python-codacy-coverage -r coverage.xml
 
+before_script:
+ - cp local_settings.travis.py local_settings.py
