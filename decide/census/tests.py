@@ -73,3 +73,16 @@ class CensusTestCase(BaseTestCase):
         response = self.client.delete('/census/{}/'.format(1), data, format='json')
         self.assertEqual(response.status_code, 204)
         self.assertEqual(0, Census.objects.count())
+
+    def setUp(self):
+        super().setUp()
+        self.census = Census(voting_id=1, voter_id=1)
+        self.census.save()
+
+    def tearDown(self):
+        super().tearDown()
+        self.census = None
+
+    def test_store_census(self):
+        self.assertEqual(Census.objects.count(), 1)
+        
